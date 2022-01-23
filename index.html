@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halfords</title>
+    <script type="text/javascript" src="https://devsdk.singularkey.com/latest/singularkey.js"></script>
+    <script type="text/javascript" src="src/main.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <!-- this is only used with custom html pages - we do not have any at the moment -->
+    <link rel="stylesheet" href="assets/templates.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img class="logo-img" src="assets/logo.svg" alt="">
+        </div>
+        <div class="search-bar">Search Halfords.com</div>
+        <div class="login-menu">
+            <img src="assets/search.jpg" alt="">
+            <img src="assets/locations.jpg" alt="">
+            <img id="loginButton" src="assets/account.jpg" alt="">
+            <img src="assets/basket.jpg" alt="">
+
+            <div id="username" class="username auth none"></div>
+            <a id="logoutButton" class="identityButton auth" style="display: none;" href="/">Logout</a>
+        </div>
+    </div>
+    <div class="main">
+        <img id="home" class="home-image" src="assets/home.jpg" alt="">
+        <div id="widget" class="skWidget"></div>
+    </div>
+</body>
+
+</html>

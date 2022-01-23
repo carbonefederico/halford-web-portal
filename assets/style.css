@@ -1,0 +1,147 @@
+body {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: aktiv-grotesk, Arial, Helvetica, sans-serif;
+  line-height: 20px;
+}
+
+a {
+  background-color: transparent;
+  border: 0px;
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input {
+  color: #ccc;
+  border-radius: 30px;
+}
+
+.navbar {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.navbar .logo-img {
+  width: 184px;
+}
+
+.home-image {
+  width: 100%;
+}
+
+.reactSingularKey_hftMain {
+  background: linear-gradient(-135deg, rgb(30, 63, 117), rgb(1, 14, 29));
+  box-shadow: 0px 0px 3px white;
+  border: 0px;
+  padding: 100px;
+}
+
+.reactSingularKey_hftNextButton {
+  color: black;
+  background: rgb(254, 209, 48);
+  border: 0px;
+  margin: 0px;
+}
+
+.reactSingularKey_hftNextButton_google {
+  color: black;
+  background: rgb(255, 255, 255);
+  border: 0px;
+  margin: 0px;
+  margin-bottom: 15px;
+}
+
+.reactSingularKey_hftNextButton_fb {
+  color: black;
+  background: rgb(23, 108, 240);
+  border: 0px;
+  margin: 0px;
+  margin-bottom: 15px;
+}
+
+.reactSingularKey_hftNextButton:hover {
+  background: rgb(255, 200, 0) !important;
+  border: 1px !important;
+}
+
+.reactSingularKey_hftNextButton_google:hover {
+  background: rgb(255, 255, 255) !important;
+  border: 1px !important;
+}
+
+.reactSingularKey_hftNextButton_fb:hover {
+  background: rgb(23, 108, 240) !important;
+  border: 1px !important;
+}
+
+.reactSingularKey_hftPoweredByText {
+  color: transparent;
+}
+
+.reactSingularKey_messageScreenIcon {
+  visibility: hidden;
+}
+
+.google_link {
+  color: black;
+}
+
+.reactSingularKey_hftFooter {
+  margin-top: 20px;
+}
+
+.forgotPassword {
+  background-color: transparent;
+  border: 0px;
+  color: white;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.email-body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.981), rgba(0, 0, 0, 0.721)),
+    url("https://fifaplus.ping-eng.com/assets/Home.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.wait {
+  text-align: center;
+}
+
+.css-1q2ub47 {
+  background-color: white !important;
+}
+
+.css-3qyv83 {
+  background-color: white !important;
+}
+
+.css-1tm6szk {
+  background-color: white !important;
+}
