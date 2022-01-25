@@ -9,8 +9,6 @@
     <script type="text/javascript" src="https://devsdk.singularkey.com/latest/singularkey.js"></script>
     <script type="text/javascript" src="src/main.js"></script>
     <link rel="stylesheet" href="assets/style.css">
-    <!-- this is only used with custom html pages - we do not have any at the moment -->
-    <link rel="stylesheet" href="assets/templates.css">
 </head>
 
 <body>
@@ -19,11 +17,16 @@
         <div class="logo">
             <img class="logo-img" src="assets/logo.svg" alt="">
         </div>
-        <div class="search-bar">Search Halfords.com</div>
+
         <div class="login-menu">
             <img src="assets/search.jpg" alt="">
             <img src="assets/locations.jpg" alt="">
-            <img id="loginButton" src="assets/account.jpg" alt="">
+
+            <div class="account">
+                <img id="loginButton" src="assets/account.jpg" alt="" class="login-button">
+                <div id="userLabel" class="user">Fede</div>
+            </div>
+
             <img src="assets/basket.jpg" alt="">
 
             <div id="username" class="username auth none"></div>

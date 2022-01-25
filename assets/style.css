@@ -41,52 +41,43 @@ input {
   width: 184px;
 }
 
+.login-menu {
+  display: flex;
+  gap: 5px;
+}
+.login-button {
+  cursor: pointer;
+}
+
 .home-image {
   width: 100%;
 }
 
+.account {
+  display: flex;
+  flex-direction: column;
+  background-color: grey;
+  width: 70px;
+  height: 70px;
+  color: white;
+}
+
 .reactSingularKey_hftMain {
-  background: linear-gradient(-135deg, rgb(30, 63, 117), rgb(1, 14, 29));
-  box-shadow: 0px 0px 3px white;
+  background: white;
+  box-shadow: 0px 0px 3px black;
   border: 0px;
   padding: 100px;
 }
 
 .reactSingularKey_hftNextButton {
   color: black;
-  background: rgb(254, 209, 48);
+  background: #ff9718;
   border: 0px;
-  margin: 0px;
-}
-
-.reactSingularKey_hftNextButton_google {
-  color: black;
-  background: rgb(255, 255, 255);
-  border: 0px;
-  margin: 0px;
-  margin-bottom: 15px;
-}
-
-.reactSingularKey_hftNextButton_fb {
-  color: black;
-  background: rgb(23, 108, 240);
-  border: 0px;
-  margin: 0px;
-  margin-bottom: 15px;
+  margin: 5px;
 }
 
 .reactSingularKey_hftNextButton:hover {
-  background: rgb(255, 200, 0) !important;
-  border: 1px !important;
-}
-
-.reactSingularKey_hftNextButton_google:hover {
-  background: rgb(255, 255, 255) !important;
-  border: 1px !important;
-}
-
-.reactSingularKey_hftNextButton_fb:hover {
-  background: rgb(23, 108, 240) !important;
+  background: #ffb050 !important;
   border: 1px !important;
 }
 
@@ -98,12 +89,13 @@ input {
   visibility: hidden;
 }
 
-.google_link {
-  color: black;
-}
-
 .reactSingularKey_hftFooter {
   margin-top: 20px;
+}
+
+.reactSingularKey_hftInputFieldContainer styles_hftInputFieldContainer__3N4hv {
+  border-color: red !important;
+  background-color: red !important;
 }
 
 .forgotPassword {
@@ -115,19 +107,6 @@ input {
 .forgotPassword:hover {
   text-decoration: underline;
   cursor: pointer;
-}
-
-.email-body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.981), rgba(0, 0, 0, 0.721)),
-    url("https://fifaplus.ping-eng.com/assets/Home.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
 }
 
 .wait {

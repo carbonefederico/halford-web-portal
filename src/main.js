@@ -1,10 +1,8 @@
 const props = {
-    "companyId": "A7t8oXIPKEuRAwtO8JUS9lYLvFCTTTGj",
-    "regFlowId": "hMF6Ts7D6Woy1uTnauyPnpiPAmAu78mK",
-    "loginFlowId": "7f1Pj7NuEVKTkmoZzWmU3NZbHDU46top",
-    "trxFlowId" : "pnvRCWzuYzIyqt4MorHzztqZjg2V59T1",
-    "subscriptionFlowId" : "CeQRGO08rUFL0Mdhn8VIZfwDqup2tSal",
-    "apiKey": "iUCtJ4sYHcyBwOHtKkUbAHjJInyEqkxCsHC6GCcCOqPYtgK2vc1pzc7wvZ6O9JA9CtAGWTX3kwiccLnYXsXhbDgXpmq5g0hfEN6p8WMti4kPm29nrU4LRY54jbOeUPZvO80lxMkOuPqaFVZcKGYHFwQmgivat7L6XqPop4DWp3AEVJoMcI3BTOqrBxrcjJt2o6XtGi3NYAvslFktJlHQPoYdO7rvtzx1Up91KA7g5lgLM8WmqWZYLutxIpk4IqrE"
+    "companyId": "6lNuL5aD3AKeqno6w16MgV9o5ITgwE4B",
+    "loginPolicyId": "Sl0bBKViVsbUr3Fg0rwD52pPxNtdPs4m",
+    "trxpolicyId": "pnvRCWzuYzIyqt4MorHzztqZjg2V59T1",
+    "apiKey": "2eGHvUqMaHeKjfecf88CsFpmRjIXMosi7KuY4cZ4PWktwEdlXQw1lRKaYzKmByylU9ivUvkpJwwGifrW5I6aO0EaznKJHKAfXBhCBMNHcOdm5HfiXZYwjB2Qe2EQtnSVpGa2MQW1v6lxkXDxrlAQvOByWIFebVar2I0vfI5edWFpDnpji0HiMHa0Ocez8JqGBDe098OLj6W90RtwgMLVU7WrjlHd1UqlkfKdfnkcfNREE0NGPbHrIqXMpz0ZR2ea"
 }
 
 let token;
@@ -13,13 +11,7 @@ let idTokenClaims;
 
 window.onload = async () => {
     console.log("onload");
-    document.getElementById("registerButton").addEventListener("click", () => startRegistration());
     document.getElementById("loginButton").addEventListener("click", () => startLogin());
-    document.getElementById("eventLink").addEventListener ("click", () => showPage ("event"));
-    document.getElementById("homeLink").addEventListener ("click", () => showPage ("home"));
-    document.getElementById("moreLink").addEventListener ("click", () => showPage ("more"));
-    document.getElementById("event").addEventListener("click", ()=> startTransaction ());
-    document.getElementById("more").addEventListener("click", ()=> startSubscription ());
 
     if (window.location.hash) {
         handleRedirectBack();
@@ -29,50 +21,14 @@ window.onload = async () => {
     }
 }
 
-function startTransaction () {
-    console.log ("startTransaction");
-    let parameters = {
-        'userEmail': idTokenClaims.email,
-        'eventTitle':  'Les Bleus',
-        'cost': '4.00 €'
-    }
-    showWidget(props.trxFlowId, purchaseCallback, errorCallback, onCloseModal,parameters);
-}
-
-function startSubscription () {
-    console.log ("startSubscription");
-    let parameters = {
-        'userEmail': idTokenClaims.email,
-        'eventTitle': 'FIFA+ Yearly Subscription',
-        'cost': '50.00 €'
-    }
-    showWidget(props.subscriptionFlowId, subscriptionCallback, errorCallback, onCloseModal,parameters);
-}
-
 async function startLogin() {
-    console.log ("startLogin");
-    showWidget(props.loginFlowId, successCallback, errorCallback, onCloseModal);
-}
-
-async function startRegistration() {
-    console.log ("startRegistration");
-    showWidget(props.regFlowId, successCallback, errorCallback, onCloseModal);
+    console.log("startLogin");
+    showWidget(props.loginPolicyId, successCallback, errorCallback, onCloseModal);
 }
 
 async function logout() {
-    console.log ("logout");
-    updateUI (false);
-}
-
-function handleRedirectBack() {
-    var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-    var id_token = new URLSearchParams(hash).get('id_token');
-    console.log(id_token);
-    let decodedToken = decodeJWT(id_token);
-    idTokenClaims = decodedToken.payload;
-    console.log(idTokenClaims.mail);
-    updateUI (true);
-    window.history.replaceState({}, document.title, window.location.pathname);
+    console.log("logout");
+    updateUI(false);
 }
 
 async function getToken() {
@@ -90,7 +46,7 @@ async function getToken() {
     console.log(token);
 }
 
-async function showWidget(flowId, successCallback, errorCallback, onCloseModal,parameters) {
+async function showWidget(policyId, successCallback, errorCallback, onCloseModal, parameters) {
     console.log("showWidget");
     let widgetConfig = {
         config: {
@@ -98,7 +54,7 @@ async function showWidget(flowId, successCallback, errorCallback, onCloseModal,p
             apiRoot: "https://pingsandboxapi.singularkey.com/v1",
             accessToken: token.access_token,
             companyId: props.companyId,
-            policyId: flowId,
+            policyId: policyId,
             parameters: parameters
         },
         useModal: true,
@@ -116,18 +72,18 @@ function successCallback(response) {
     let decodedToken = decodeJWT(response.id_token);
     idTokenClaims = decodedToken.payload;
     console.log(idTokenClaims);
-    updateUI (true);
+    updateUI(true);
 }
 
-function subscriptionCallback (response) {
+function subscriptionCallback(response) {
     console.log("subscriptionCallback");
     singularkey.cleanup(skWidget);
 }
 
-function purchaseCallback (response) {
+function purchaseCallback(response) {
     console.log("purchaseCallback");
     singularkey.cleanup(skWidget);
-    showPage ("player");
+    showPage("player");
 }
 
 function errorCallback(error) {
@@ -169,11 +125,11 @@ function base64urlDecodeStr(str) {
     return atob(str);
 }
 
-function updateUI (isUserAuthenticated) {
-    console.log ("updateUI. Is user authenticated " + isUserAuthenticated);
-    
+function updateUI(isUserAuthenticated) {
+    console.log("updateUI. Is user authenticated " + isUserAuthenticated);
+
     if (isUserAuthenticated) {
-        document.getElementById("username").innerText = getDisplayName (idTokenClaims);
+        document.getElementById("username").innerText = getDisplayName(idTokenClaims);
         eachElement(".auth", (e) => e.style.display = "block");
         eachElement(".non-auth", (e) => e.style.display = "none");
     } else {
@@ -183,7 +139,7 @@ function updateUI (isUserAuthenticated) {
     }
 }
 
-function getDisplayName (claims) {
+function getDisplayName(claims) {
     if (claims.firstName) {
         return claims.firstName + " (" + claims.email + ")";
     }
@@ -191,18 +147,18 @@ function getDisplayName (claims) {
     return claims.email;
 }
 
-function showPage (idToShow) {
-    hideAll ();
-    document.getElementById (idToShow).style.display = "block";
+function showPage(idToShow) {
+    hideAll();
+    document.getElementById(idToShow).style.display = "block";
 }
 
-function hideAll () {
-    console.log ("hideAll");
-    document.querySelectorAll (".home-image").forEach ((e) => e.style.display = "none");
+function hideAll() {
+    console.log("hideAll");
+    document.querySelectorAll(".home-image").forEach((e) => e.style.display = "none");
 }
 
-function eachElement (selector, fn) {
+function eachElement(selector, fn) {
     for (let e of document.querySelectorAll(selector)) {
-      fn(e);
+        fn(e);
     }
-  }
+}
