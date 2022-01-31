@@ -12,7 +12,7 @@ let idTokenClaims;
 window.onload = async () => {
     console.log("onload");
     document.getElementById("loginButton").addEventListener("click", () => startLogin());
-
+    document.getElementById("logo-img").addEventListener("click", () => logout())
     if (window.location.hash) {
         handleRedirectBack();
     } else {
@@ -133,7 +133,7 @@ function updateUI(isUserAuthenticated) {
         eachElement(".auth", (e) => e.style.display = "block");
         eachElement(".non-auth", (e) => e.style.display = "none");
     } else {
-        document.getElementById("username").innerText = "";
+        document.getElementById("username").innerText = "Account";
         eachElement(".auth", (e) => e.style.display = "none");
         eachElement(".non-auth", (e) => e.style.display = "block");
     }
@@ -141,7 +141,7 @@ function updateUI(isUserAuthenticated) {
 
 function getDisplayName(claims) {
     if (claims.firstName) {
-        return claims.firstName + " (" + claims.email + ")";
+        return claims.firstName;
     }
 
     return claims.email;
