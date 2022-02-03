@@ -1,9 +1,5 @@
 body {
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -32,13 +28,9 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding-left: 200px;
-  padding-right: 200px;
-}
-
-.home-image {
-  width: 100%;
+  gap: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .navbar .logo-img {
@@ -47,7 +39,14 @@ input {
 
 .login-menu {
   display: flex;
+  align-items: center;
   gap: 5px;
+  height: 50px;
+  padding: 10px;
+}
+
+.search {
+  height: 50px;
 }
 
 .login-button {
@@ -72,6 +71,14 @@ input {
   margin-top: 3px;
 }
 
+.home-image {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
 .reactSingularKey_hftMain {
   background: white;
   box-shadow: 0px 0px 3px black;
@@ -81,7 +88,7 @@ input {
 
 .reactSingularKey_hftNextButton {
   color: black;
-  background: #ff9718;
+  background: #ff9718 !important;
   border: 0px;
   margin: 5px;
 }
@@ -106,6 +113,10 @@ input {
 .reactSingularKey_hftInputFieldContainer styles_hftInputFieldContainer__3N4hv {
   border-color: red !important;
   background-color: red !important;
+}
+
+.sk-alert {
+  color: red !important;
 }
 
 .forgotPassword {

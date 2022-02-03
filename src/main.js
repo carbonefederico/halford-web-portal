@@ -2,6 +2,7 @@ const props = {
     "companyId": "6lNuL5aD3AKeqno6w16MgV9o5ITgwE4B",
     "loginPolicyId": "Sl0bBKViVsbUr3Fg0rwD52pPxNtdPs4m",
     "trxpolicyId": "pnvRCWzuYzIyqt4MorHzztqZjg2V59T1",
+    "trxPolicyId": "pLKbHZTwCytFhI1IviCXGnWuTDmZ7G2Q",
     "apiKey": "2eGHvUqMaHeKjfecf88CsFpmRjIXMosi7KuY4cZ4PWktwEdlXQw1lRKaYzKmByylU9ivUvkpJwwGifrW5I6aO0EaznKJHKAfXBhCBMNHcOdm5HfiXZYwjB2Qe2EQtnSVpGa2MQW1v6lxkXDxrlAQvOByWIFebVar2I0vfI5edWFpDnpji0HiMHa0Ocez8JqGBDe098OLj6W90RtwgMLVU7WrjlHd1UqlkfKdfnkcfNREE0NGPbHrIqXMpz0ZR2ea"
 }
 
@@ -12,7 +13,10 @@ let idTokenClaims;
 window.onload = async () => {
     console.log("onload");
     document.getElementById("loginButton").addEventListener("click", () => startLogin());
-    document.getElementById("logo-img").addEventListener("click", () => logout())
+    document.getElementById("logo-img").addEventListener("click", () => showPage("home"));
+    document.getElementById("home").addEventListener("click", () => showPage("bikes"));
+    document.getElementById("bikes").addEventListener("click", () => startTransaction());
+
     if (window.location.hash) {
         handleRedirectBack();
     } else {
@@ -24,6 +28,16 @@ window.onload = async () => {
 async function startLogin() {
     console.log("startLogin");
     showWidget(props.loginPolicyId, successCallback, errorCallback, onCloseModal);
+}
+
+function startTransaction() {
+    console.log("startTransaction");
+    let parameters = {
+        'email': idTokenClaims.email,
+        'item': 'Carrera Mountain Bike 2.0',
+        'cost': '1099.00 £'
+    }
+    showWidget(props.trxPolicyId, purchaseCallback, errorCallback, onCloseModal, parameters);
 }
 
 async function logout() {
@@ -73,11 +87,6 @@ function successCallback(response) {
     idTokenClaims = decodedToken.payload;
     console.log(idTokenClaims);
     updateUI(true);
-}
-
-function subscriptionCallback(response) {
-    console.log("subscriptionCallback");
-    singularkey.cleanup(skWidget);
 }
 
 function purchaseCallback(response) {
