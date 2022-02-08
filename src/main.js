@@ -1,8 +1,8 @@
 const props = {
     "companyId": "6lNuL5aD3AKeqno6w16MgV9o5ITgwE4B",
     "loginPolicyId": "Sl0bBKViVsbUr3Fg0rwD52pPxNtdPs4m",
-    "trxpolicyId": "pnvRCWzuYzIyqt4MorHzztqZjg2V59T1",
     "trxPolicyId": "pLKbHZTwCytFhI1IviCXGnWuTDmZ7G2Q",
+    "preferencesPolicyId": "hwePOMlgeldFTde6xNaCsd2TPsGQHXsQ",
     "apiKey": "2eGHvUqMaHeKjfecf88CsFpmRjIXMosi7KuY4cZ4PWktwEdlXQw1lRKaYzKmByylU9ivUvkpJwwGifrW5I6aO0EaznKJHKAfXBhCBMNHcOdm5HfiXZYwjB2Qe2EQtnSVpGa2MQW1v6lxkXDxrlAQvOByWIFebVar2I0vfI5edWFpDnpji0HiMHa0Ocez8JqGBDe098OLj6W90RtwgMLVU7WrjlHd1UqlkfKdfnkcfNREE0NGPbHrIqXMpz0ZR2ea"
 }
 
@@ -27,7 +27,14 @@ window.onload = async () => {
 
 async function startLogin() {
     console.log("startLogin");
-    showWidget(props.loginPolicyId, successCallback, errorCallback, onCloseModal);
+    if (idTokenClaims) {
+        let parameters = {
+            'email': idTokenClaims.email
+        }
+        showWidget(props.preferencesPolicyId, porfileChangeSuccessCallback, errorCallback, onCloseModal, parameters);
+    } else {
+        showWidget(props.loginPolicyId, successCallback, errorCallback, onCloseModal);
+    }
 }
 
 function startTransaction() {
@@ -42,6 +49,7 @@ function startTransaction() {
 
 async function logout() {
     console.log("logout");
+    idTokenClaims = null;
     updateUI(false);
 }
 
@@ -78,6 +86,11 @@ async function showWidget(policyId, successCallback, errorCallback, onCloseModal
     };
 
     singularkey.skRenderScreen(skWidget, widgetConfig);
+}
+
+function porfileChangeSuccessCallback(response) {
+    console.log("porfileChangeSuccessCallback");
+    singularkey.cleanup(skWidget);
 }
 
 function successCallback(response) {
